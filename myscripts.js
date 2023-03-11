@@ -1,48 +1,80 @@
 let paper = "Paper";
 let rock = "Rock";
-let scissors = "Scissors";
+let scissors = "Scissors";\
+let player_score = 0;
+let computer_score = 0;
 
-
-
-
-function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3);
-    if (choice === 0) {
-        return computerChoice = paper
+function getComputerChoice(computerSelection) {
+    let random = Math.floor(Math.random() * 3);
+    if (random == 0) {
+        computerSelection = paper
+        return computerSelection
     }
-    else if(choice === 1) {
-        return computerChoice = rock
+    else if(random == 1) {
+        computerSelection = rock
+        return computerSelection;
     }
     else {
-        return computerChoice = scissors
+        computerSelection = scissors
+        return computerSelection;
     }
     
     
 }
 
 
-function getPlayerChoice(playerChoice) {
+function getPlayerChoice(playerSelection) {
     choice = prompt("What do you choose?");
     choice = choice.toLowerCase();
     if (choice == "paper") {
-        return playerChoice = paper;
+        playerSelection = paper;
+        return playerSelection ;
     }
     else if(choice == "rock") {
-        return playerChoice = rock;
+        playerSelection = rock;
+        return playerSelection ;
     }
     else if (choice == "scissors") {
-        return playerChoice = scissors;
+        playerSelection = scissors;
+        return playerSelection ;
     }
     
 }
 
-function game(playerSelection, computerChoice) {
 
+let playerSelection = getPlayerChoice();
+let computerSelection = getComputerChoice();
+function playRound(playerSelection, computerSelection) {
     
+    if (playerSelection == computerSelection) {
+        return tie;
+    }
+    else if (playerSelection == rock && computerSelection == scissors) {
+        return win;
+    }
+    else if (playerSelection == scissors && computerSelection == paper) {
+        return win;
+    }
+   
+    
+    else if(playerSelection == paper && computerSelection == rock) {
+        return win;
+    }
+    else {
+        return lose;
+    }
+}
+
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+    playRound(playerSelection, computerSelection);
 
 
 }
  
-let playerSelection = getPlayerChoice();
-let computerSelection = getComputerChoice();
-
+}
+const win = `You won! ${playerSelection} beats ${computerSelection}`;
+const lose = `You lost! ${computerSelection} beats ${playerSelection}`;
+const tie = "It's a tie!";
+console.log(playRound(playerSelection, computerSelection));
